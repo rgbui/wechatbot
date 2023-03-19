@@ -97,7 +97,10 @@ func (g *GroupMessageHandler) ReplyText() error {
 	}
 
 	// 3.请求GPT获取回复
-	reply, err = gpt.Completions(requestText)
+	//reply, err = gpt.Completions(requestText)
+	myGpt:=gpt.MyGpt{C:gpt.NewGpr35()}
+	reply=myGpt.Gpt3P5(requestText)
+	err=nil
 	if err != nil {
 		// 2.1 将GPT请求失败信息输出给用户，省得整天来问又不知道日志在哪里。
 		errMsg := fmt.Sprintf("gpt request error: %v", err)
